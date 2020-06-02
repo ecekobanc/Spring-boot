@@ -8,11 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user") //kabul etmek istediğin dosya yolu
 
 public class UserController {
+    
     @RequestMapping(path={"","/"},method = RequestMethod.GET)
-public String test(){
-    return "test";
-}
-
-
-
+    public String test(){
+        return "test";
+    }
 }
