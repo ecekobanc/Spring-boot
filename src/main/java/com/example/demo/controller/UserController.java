@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.example.demo.controller.exception.IdFormatException;
+import com.example.demo.controller.exception.UserNotFoundException;
 import com.example.demo.model.User;
 import com.example.demo.service.UserServiceImpl;
 
@@ -43,9 +45,18 @@ public class UserController {
         return users;
     }
 
-    @GetMapping(value="/{id}")
-    public User searchUser(@PathVariable Long id){
-        User user=userService.findById(id).orElseThrow(()->new IllegalArgumentException());
+    @GetMapping(value="/{user_id}")
+    public User searchUser(@PathVariable String user_id){
+
+        final Long id;
+        try{
+            id = Long.parseLong(user_id);
+        }
+        catch(NumberFormatException ex){
+            throw new IdFormatException(user_id);
+        }
+
+        User user = userService.findById(id).orElseThrow(()->new UserNotFoundException(id));
         return user;
     }
 }
