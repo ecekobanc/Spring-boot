@@ -3,5 +3,5 @@
 ## Executing API
 ```
 $ ./mvnw clean install
-$ ./mvnw clean spring-boot:run
+$ ./mvnw spring-boot:run
 ```
