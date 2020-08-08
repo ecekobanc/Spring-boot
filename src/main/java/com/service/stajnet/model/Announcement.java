@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "announcement")
+@Table(name = "announcements")
 public final class Announcement {
     
     public enum Type{
@@ -47,5 +47,5 @@ public final class Announcement {
 
     @Column(name = "definition", nullable=false)
     private String definition;
-    
+
 }

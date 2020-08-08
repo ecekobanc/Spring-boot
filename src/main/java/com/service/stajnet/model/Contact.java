@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="contact")
+@Table(name="contacts")
 public final class Contact {
     
     @Id

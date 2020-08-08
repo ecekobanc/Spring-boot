@@ -68,12 +68,22 @@ public final class User implements UserDetails {
     @Column(name = "nationality", nullable = true)
     private String nationality;
 
+    @Builder.Default
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<Role>();
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Builder.Default
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Social> socials = new HashSet<Social>();
  
+    @Builder.Default
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Company> companies = new HashSet<Company>();
+
+    @Builder.Default
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Announcement> announcements = new HashSet<Announcement>();
+
     @Column(name = "accountNonExpired")
     @Builder.Default
     private boolean accountNonExpired = true;

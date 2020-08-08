@@ -4,10 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,7 +18,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "social")
+@Builder
+@Table(name = "socials")
 public final class Social {
 
     public enum Type{
@@ -27,6 +31,9 @@ public final class Social {
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    
     @Column(name = "address", nullable = false)
     private String address;
 

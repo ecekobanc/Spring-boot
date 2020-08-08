@@ -45,8 +45,8 @@ public class StajnetApplication {
 				roles.add(new Role("admin"));
 				roles.add(new Role("user"));
 				HashSet<Social> socials = new HashSet<Social>();
-				socials.add(new Social("https://www.linkedin.com/in/furkankayar/", Social.Type.LINKEDIN));
-				socials.add(new Social("https://github.com/furkankayar", Social.Type.GITHUB));
+				socials.add(Social.builder().address("https://www.linkedin.com/in/furkankayar/").type(Social.Type.LINKEDIN).build());
+				socials.add(Social.builder().address("https://github.com/furkankayar").type(Social.Type.GITHUB).build());
 				Calendar cal = Calendar.getInstance();
 				cal.set(Calendar.YEAR, 1998);
 				cal.set(Calendar.MONTH, Calendar.OCTOBER);
