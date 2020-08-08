@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name = "social")
-public class Social {
+public final class Social {
 
     public enum Type{
         LINKEDIN,

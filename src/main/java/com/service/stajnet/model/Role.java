@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "roles")
-public class Role implements GrantedAuthority{
+public final class Role implements GrantedAuthority{
     
     private static final long serialVersionUID = 1L;
 
