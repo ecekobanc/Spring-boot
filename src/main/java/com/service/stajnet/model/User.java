@@ -55,11 +55,11 @@ public final class User implements UserDetails {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "gender", nullable = false)
+    @Column(name = "gender", nullable = true)
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password", nullable = true)
     private String encryptedPassword;
 
     @Column(name = "birthdate", nullable = true)

@@ -39,11 +39,15 @@ public class StajnetApplication {
 		return new CommandLineRunner(){
 			@Override
 			public void run(String... args) throws Exception {
+
+				Role admin = new Role("admin");
+				Role user = new Role("user");
+					
 				BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 				String hashedPassword = bCryptPasswordEncoder.encode("123");
 				HashSet<Role> roles = new HashSet<Role>();
-				roles.add(new Role("admin"));
-				roles.add(new Role("user"));
+				roles.add(admin);
+				roles.add(user);
 				HashSet<Social> socials = new HashSet<Social>();
 				socials.add(Social.builder().address("https://www.linkedin.com/in/furkankayar/").type(Social.Type.LINKEDIN).build());
 				socials.add(Social.builder().address("https://github.com/furkankayar").type(Social.Type.GITHUB).build());
@@ -64,6 +68,35 @@ public class StajnetApplication {
 						.birthdate(cal.getTime())
 						.encryptedPassword(hashedPassword)
 						.socials(socials)
+						.roles(roles)
+						.build()
+				);
+			
+				String ecePassword = bCryptPasswordEncoder.encode("123");
+				HashSet<Role> eceRoles = new HashSet<Role>();
+				eceRoles.add(admin);
+				eceRoles.add(user);
+				HashSet<Social> eceSocials = new HashSet<Social>();
+				eceSocials.add(Social.builder().address("https://www.linkedin.com/in/ecekobanc/").type(Social.Type.LINKEDIN).build());
+				eceSocials.add(Social.builder().address("https://github.com/ecekobanc").type(Social.Type.GITHUB).build());
+				eceSocials.add(Social.builder().address("https://twitter.com/ecekobanc").type(Social.Type.TWITTER).build());
+				Calendar eceCal = Calendar.getInstance();
+				eceCal.set(Calendar.YEAR, 1998);
+				eceCal.set(Calendar.MONTH, Calendar.OCTOBER);
+				eceCal.set(Calendar.DAY_OF_MONTH, 2);
+				eceCal.set(Calendar.HOUR_OF_DAY, 6);
+				eceCal.set(Calendar.MINUTE, 57);
+				eceCal.set(Calendar.SECOND, 14);
+				userRepository.save(
+					User.builder()
+						.username("ecekobanc")
+						.firstName("ece")
+						.lastName("kobanc")
+						.gender(User.Gender.FEMALE)
+						.nationality("T.C.")
+						.birthdate(cal.getTime())
+						.encryptedPassword(ecePassword)
+						.socials(eceSocials)
 						.roles(roles)
 						.build()
 				);
