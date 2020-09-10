@@ -39,18 +39,15 @@ public class StajnetApplication {
 		return new CommandLineRunner(){
 			@Override
 			public void run(String... args) throws Exception {
-
-				Role admin = new Role("admin");
-				Role user = new Role("user");
-					
+	
 				BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 				String hashedPassword = bCryptPasswordEncoder.encode("123");
 				HashSet<Role> roles = new HashSet<Role>();
-				roles.add(admin);
-				roles.add(user);
+				roles.add(Role.builder().role("admin").build());
+				roles.add(Role.builder().role("user").build());
 				HashSet<Social> socials = new HashSet<Social>();
 				socials.add(Social.builder().address("https://www.linkedin.com/in/furkankayar/").type(Social.Type.LINKEDIN).build());
-				socials.add(Social.builder().address("https://github.com/furkankayar").type(Social.Type.GITHUB).build());
+				socials.add(Social.builder().address("https://www.github.com/furkankayar/").type(Social.Type.GITHUB).build());
 				Calendar cal = Calendar.getInstance();
 				cal.set(Calendar.YEAR, 1998);
 				cal.set(Calendar.MONTH, Calendar.OCTOBER);
@@ -74,8 +71,8 @@ public class StajnetApplication {
 			
 				String ecePassword = bCryptPasswordEncoder.encode("123");
 				HashSet<Role> eceRoles = new HashSet<Role>();
-				eceRoles.add(admin);
-				eceRoles.add(user);
+				eceRoles.add(Role.builder().role("admin").build());
+				eceRoles.add(Role.builder().role("user").build());
 				HashSet<Social> eceSocials = new HashSet<Social>();
 				eceSocials.add(Social.builder().address("https://www.linkedin.com/in/ecekobanc/").type(Social.Type.LINKEDIN).build());
 				eceSocials.add(Social.builder().address("https://github.com/ecekobanc").type(Social.Type.GITHUB).build());
@@ -94,10 +91,10 @@ public class StajnetApplication {
 						.lastName("kobanc")
 						.gender(User.Gender.FEMALE)
 						.nationality("T.C.")
-						.birthdate(cal.getTime())
+						.birthdate(eceCal.getTime())
 						.encryptedPassword(ecePassword)
 						.socials(eceSocials)
-						.roles(roles)
+						.roles(eceRoles)
 						.build()
 				);
 			}
@@ -106,6 +103,7 @@ public class StajnetApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(StajnetApplication.class, args);
+		
 	}
 
 }
